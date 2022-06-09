@@ -2,6 +2,7 @@ package com.upworkscraper.upworkscraper.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 @Setter
 @Getter
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class Job {
     private String title;
     private String ciphertext;
