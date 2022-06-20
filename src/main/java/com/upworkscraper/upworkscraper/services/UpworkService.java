@@ -4,10 +4,12 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.upworkscraper.upworkscraper.configuration.HttpClient;
 import com.upworkscraper.upworkscraper.helpers.HttpConstants;
-import okhttp3.*;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Date;
 
 import static com.upworkscraper.upworkscraper.helpers.HttpConstants.*;
 
@@ -17,7 +19,14 @@ public class UpworkService {
     public static final String URL = "https://www.upwork.com";
     public static final String RECOMMENDATION_SLUG = "/ab/find-work/api/feeds/embeddings-recommendations";
 
-    public void sendUpworkRequest(String cookie) {
+    public void test() {
+        System.out.println("time -> " + new Date());
+    }
+
+    public void handleUpworkRequest() {
+
+        // TODO: Get this from DB
+        String cookie = "";
 
         var response = sendRequest(cookie);
 
