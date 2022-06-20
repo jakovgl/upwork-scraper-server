@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.upworkscraper.upworkscraper.configuration.HttpClient;
 import com.upworkscraper.upworkscraper.helpers.HttpConstants;
+import com.upworkscraper.upworkscraper.models.UWResponse;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,8 @@ public class UpworkService {
     public static final String URL = "https://www.upwork.com";
     public static final String RECOMMENDATION_SLUG = "/ab/find-work/api/feeds/embeddings-recommendations";
 
+    final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
     public void test() {
         System.out.println("time -> " + new Date());
     }
@@ -30,8 +33,8 @@ public class UpworkService {
 
         var response = sendRequest(cookie);
 
-        var objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        System.out.println("");
+        UWResponse uwResponse = getUWResponseFromHttpResponse(response);
+        System.out.println(uwResponse);
     }
 
     private Response sendRequest(String cookie) {
@@ -51,5 +54,21 @@ public class UpworkService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private UWResponse getUWResponseFromHttpResponse(Response response) {
+
+        if (response.body() == null) {
+            return null;
+        }
+
+        try {
+            String json = response.body().string();
+            return objectMapper.readValue(json, UWResponse.class);
+        } catch (IOException e) {
+            // TODO: Handle this
+            e.printStackTrace();
+        }
+        return null;
     }
 }
