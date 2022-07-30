@@ -15,8 +15,8 @@ public class UWJob {
     private String description;
     private String duration;
     private String engagement;
-    private Amount amount;
+    private UWAmount amount;
     private String tier;
     private String proposalsTier;
-    private List<Attributes> attrs;
+    private List<UWAttributes> attrs;
 }
