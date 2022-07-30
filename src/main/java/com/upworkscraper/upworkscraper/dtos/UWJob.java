@@ -1,4 +1,4 @@
-package com.upworkscraper.upworkscraper.models;
+package com.upworkscraper.upworkscraper.dtos;
 
 import lombok.*;
 
@@ -9,7 +9,7 @@ import java.util.List;
 @ToString
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class Job {
+public class UWJob {
     private String title;
     private String ciphertext;
     private String description;

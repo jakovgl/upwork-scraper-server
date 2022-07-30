@@ -1,4 +1,4 @@
-package com.upworkscraper.upworkscraper.models;
+package com.upworkscraper.upworkscraper.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

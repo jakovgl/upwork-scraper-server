@@ -13,6 +13,6 @@ public class Scheduler {
 
     @Scheduled(fixedRate = 10000)
     void pingUpwork() {
-        upworkService.handleUpworkRequest();
+        // upworkService.handleUpworkRequest();
     }
 }

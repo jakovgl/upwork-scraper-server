@@ -1,4 +1,4 @@
-package com.upworkscraper.upworkscraper.models;
+package com.upworkscraper.upworkscraper.dtos;
 
 import lombok.*;
 
@@ -10,5 +10,5 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class UWResponse {
-    private List<Job> results;
+    private List<UWJob> results;
 }

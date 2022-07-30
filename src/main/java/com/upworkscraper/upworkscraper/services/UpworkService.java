@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.upworkscraper.upworkscraper.configuration.HttpClient;
 import com.upworkscraper.upworkscraper.helpers.HttpConstants;
 import com.upworkscraper.upworkscraper.helpers.Util;
-import com.upworkscraper.upworkscraper.models.Job;
-import com.upworkscraper.upworkscraper.models.UWResponse;
+import com.upworkscraper.upworkscraper.dtos.UWJob;
+import com.upworkscraper.upworkscraper.dtos.UWResponse;
 import lombok.RequiredArgsConstructor;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -46,8 +46,8 @@ public class UpworkService {
             return;
         }
 
-        for (Job job : uwResponse.getResults()) {
-            if (!jobService.isQualified(job)) {
+        for (UWJob UWJob : uwResponse.getResults()) {
+            if (!jobService.isQualified(UWJob)) {
                 continue;
             }
             // TODO: Send notification
