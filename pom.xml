@@ -92,7 +92,7 @@
 				<artifactId>jooq-codegen-maven</artifactId>
 				<executions>
 					<execution>
-						<id>generate-postgre</id>
+						<id>generate-postgres</id>
 						<phase>generate-sources</phase>
 						<goals>
 							<goal>generate</goal>

@@ -1,26 +1,24 @@
 package com.upworkscraper.upworkscraper.services;
 
 import com.upworkscraper.upworkscraper.dtos.UWJob;
-import generated.tables.pojos.Job;
-import lombok.RequiredArgsConstructor;
+import com.upworkscraper.upworkscraper.repositories.AbstractRepository;
+import generated.tables.Job;
+import generated.tables.records.JobRecord;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Service;
 
-import static generated.Tables.*;
-
 @Service
-@RequiredArgsConstructor
-public class JobService {
+public class JobService extends AbstractRepository<JobRecord, generated.tables.pojos.Job> {
 
-    private final DSLContext context;
+    public JobService(DSLContext db) {
+        super(db, Job.JOB.asTable(), Job.JOB.ID, generated.tables.pojos.Job.class);
+    }
+
+    public generated.tables.pojos.Job getJob() {
+        return findById(1L);
+    }
 
     public boolean isQualified(UWJob job) {
         return true;
     }
-
-    public void insertJob(Job job) {
-        var jobRecord = context.newRecord(JOB, job);
-        jobRecord.insert();
-    }
-
 }
