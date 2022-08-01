@@ -23,8 +23,7 @@ import static com.upworkscraper.upworkscraper.helpers.HttpConstants.*;
 public class UpworkService {
 
     public Logger logger = LoggerFactory.getLogger(UpworkService.class);
-
-    private final JobService jobService;
+    private final UWJobService uwJobService;
 
     public static final String URL = "https://www.upwork.com";
     public static final String RECOMMENDATION_SLUG = "/ab/find-work/api/feeds/embeddings-recommendations";
@@ -47,7 +46,7 @@ public class UpworkService {
         }
 
         for (UWJob UWJob : uwResponse.getResults()) {
-            if (!jobService.isQualified(UWJob)) {
+            if (!uwJobService.isQualified(UWJob)) {
                 continue;
             }
             // TODO: Send notification

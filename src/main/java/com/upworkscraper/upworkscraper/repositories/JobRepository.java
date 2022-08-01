@@ -1,17 +1,15 @@
 package com.upworkscraper.upworkscraper.repositories;
 
-import generated.tables.pojos.Job;
-import lombok.RequiredArgsConstructor;
+import generated.tables.Job;
+import generated.tables.records.JobRecord;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
-public class JobRepository {
+public class JobRepository extends AbstractRepository<JobRecord, generated.tables.pojos.Job> {
 
-    private final DSLContext context;
-
-    public void insertJob(Job job) {
-
+    public JobRepository(DSLContext db) {
+        super(db, Job.JOB.asTable(), Job.JOB.ID, generated.tables.pojos.Job.class);
     }
+
 }

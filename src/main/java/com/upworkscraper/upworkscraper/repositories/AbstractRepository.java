@@ -26,5 +26,26 @@ public abstract class AbstractRepository<R extends UpdatableRecord, P> {
                 .fetchOneInto(pojoClass);
     }
 
-    public P
+    public P insert(P pojo) {
+        R record = db.newRecord(table);
+        mergeAndStore(record, pojo);
+
+        return record.into(pojoClass);
+    }
+
+    public P update(Long id, P pojo) {
+        R record = db.fetchOne(table, idField.eq(id));
+        mergeAndStore(record, pojo);
+
+        return record.into(pojoClass);
+    }
+
+    private void mergeAndStore(R record, P pojo) {
+        merge(record, pojo);
+        record.store();
+    }
+
+    private void merge(R record, P pojo) {
+        record.from(pojo);
+    }
 }
